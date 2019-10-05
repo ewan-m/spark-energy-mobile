@@ -11,7 +11,8 @@
     },
     "dependencies": {
         "react": "16.9.0",
-        "react-native": "0.61.2"
+        "react-native": "0.61.2",
+        "react-native-svg": "^9.11.1"
     },
     "devDependencies": {
         "@babel/core": "7.6.2",
@@ -22,6 +23,7 @@
         "@types/react-native": "^0.60.18",
         "@types/react-test-renderer": "^16.9.0",
         "babel-jest": "24.9.0",
+        "babel-plugin-inline-import": "^3.0.0",
         "eslint": "6.5.1",
         "jest": "24.9.0",
         "metro-react-native-babel-preset": "0.51.1",
