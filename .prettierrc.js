@@ -10,4 +10,12 @@ module.exports = {
 	bracketSpacing: true,
 	jsxBracketSameLine: false,
 	arrowParens: 'always',
+	overrides: [
+		{
+			files: '*.ts',
+			options: {
+				parser: 'typescript',
+			},
+		},
+	],
 };
