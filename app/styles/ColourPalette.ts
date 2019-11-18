@@ -18,4 +18,6 @@ export const colours = {
     grey: '#e9e8e8',
     greyLight: '#f4f4f4',
     greyDark: '#646568',
+    successGreen: '#3bab28',
+    failureRed: '#e91c1c'
 };
