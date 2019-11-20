@@ -9,7 +9,7 @@ export const SparkTextRegular: FunctionComponent<SparkTextProps> = (props) => (
 			{},
 			{
 				fontFamily: 'SparkOmnes-Regular',
-				fontSize: { normal: 20, big: 40 }[props.size],
+				fontSize: { small: 15, normal: 20, big: 40 }[props.size ?? "normal"],
 			},
 			props.style
 		)}
