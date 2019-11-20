@@ -4,16 +4,18 @@ import Svg, {
     Path,
     SvgProps,
   } from 'react-native-svg';
+import { colours } from "../styles/ColourPalette";
 
 
 const svgInheritanceProperties: SvgProps = {
     width: "100%",
     height: "100%",
-    strokeWidth: "0"
+    strokeWidth: "0",
+    fill: colours.secondaryText
 };
 
-interface SparkSvgProps extends SvgProps {
-    fill: string;
+export interface SparkSvgProps extends SvgProps {
+    fill?: string;
 }
 
 export const IconArrowLeftAlt: FunctionComponent<SparkSvgProps> = (props) => (
