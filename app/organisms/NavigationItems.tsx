@@ -1,27 +1,39 @@
+import React from "react";
 import { FooterTabProps } from '../molecules/FooterTab';
-import { colours } from '../styles/ColourPalette';
-import { IconHome, IconBill, IconQuestionMark, IconUser, IconSearch } from '../atoms/Icons';
-import React from 'react';
+import {
+	IconHome,
+	IconQuestionMark,
+	IconUser,
+	IconSearch,
+	IconMobileApp,
+} from '../atoms/Icons';
+import { View } from "react-native";
+import { SparkTextRegular } from "../atoms/SparkTextRegular";
 
-export const navigationItems: Array<FooterTabProps> = [{
-    colour: colours.blue,
-    label: 'Home',
-    icon: <IconHome fill={colours.blue} />
-}, {
-    colour: colours.turquoise,
-    label: 'Reading',
-    icon: <IconSearch fill={colours.turquoise} />
-}, {
-    colour: colours.hotPink,
-    label: 'Bills',
-    icon: <IconBill fill={colours.hotPink} />
-}, {
-    colour: colours.magenta,
-    label: 'Help',
-    icon: <IconQuestionMark fill={colours.magenta} />
-}, {
-    colour: colours.purple,
-    label: 'Profile',
-    icon: <IconUser fill={colours.purple} />,
-    isActive: true
-}];
+export const navigationItems: Array<FooterTabProps> = [
+	{
+		label: 'Home',
+		Icon: IconHome,
+		page: <View><SparkTextRegular>Home</SparkTextRegular></View>
+	},
+	{
+		label: 'Reading',
+		Icon: IconSearch,
+		page: <View><SparkTextRegular>Reading</SparkTextRegular></View>
+	},
+	{
+		label: 'Bills',
+		Icon: IconMobileApp,
+		page: <View><SparkTextRegular>Bills</SparkTextRegular></View>
+	},
+	{
+		label: 'Help',
+		Icon: IconQuestionMark,
+		page: <View><SparkTextRegular>Help</SparkTextRegular></View>
+	},
+	{
+		label: 'Profile',
+		Icon: IconUser,
+		page: <View><SparkTextRegular>Profile</SparkTextRegular></View>
+	},
+];

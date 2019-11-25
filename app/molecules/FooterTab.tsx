@@ -1,34 +1,40 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { View } from 'react-native';
 import { SparkTextRegular } from '../atoms/SparkTextRegular';
+import { colours } from '../styles/ColourPalette';
+import { SparkSvgProps } from '../atoms/Icons';
 
 export interface FooterTabProps {
-	colour: any;
-	icon: ReactNode;
+	Icon: FunctionComponent<SparkSvgProps>;
+	page?: ReactNode;
 	label: string;
 	isActive?: boolean;
 	onTouch?: (label: string) => void;
 }
 
 export const FooterTab: FunctionComponent<FooterTabProps> = ({
-	icon,
+	Icon,
 	isActive,
-	colour,
 	label,
-	onTouch
-}) => {
-	return (
-		<View
-			style={{
-				width: '20%',
-				flex: 1,
-				justifyContent: 'center',
-				alignItems: 'center',
-			}}
-			onTouchEnd={() => onTouch ? onTouch(label) : console.log('no')}
-		>
-			<View style={{width: 40, height: 40}}>{icon}</View>
-			{isActive && <SparkTextRegular size="normal" style={{ color: colour }}>{label}</SparkTextRegular>}
+	onTouch,
+}) => (
+	<View
+		style={{
+			width: '20%',
+			flex: 1,
+			justifyContent: 'center',
+			alignItems: 'center',
+		}}
+		onTouchEnd={() => (onTouch ? onTouch(label) : console.log('no'))}
+	>
+		<View style={{ width: 35, height: 35 }}>
+			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />
 		</View>
-	);
-};
+		<SparkTextRegular
+			size="small"
+			style={{ color: isActive ? colours.magenta : colours.secondaryText }}
+		>
+			{label}
+		</SparkTextRegular>
+	</View>
+);

@@ -11,11 +11,20 @@ type LoginProps = {
 	onLoginSuccess: Function;
 };
 
+const skipLoginIfToken = async (onLoginSuccess: Function) => {
+	const token = await AsyncStorage.getItem('accessToken');
+
+	if (token) {
+		onLoginSuccess();
+	}
+};
+
 export const Login: FunctionComponent<LoginProps> = (props) => {
+	skipLoginIfToken(props.onLoginSuccess);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-
+	
 	const attemptLogin = async () => {
 		setError('');
 		const loginResponse = await login(email, password);

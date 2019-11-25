@@ -1,32 +1,33 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, Dispatch, SetStateAction } from 'react';
 import { View } from 'react-native';
-import { FooterTab } from '../molecules/FooterTab';
-import { colours } from '../styles/ColourPalette';
-import { navigationItems } from './NavigationItems';
+import { FooterTab, FooterTabProps } from '../molecules/FooterTab';
 
-export const NavigationFooter: FunctionComponent = () => {
-	const [navigationState, setNavState] = useState(navigationItems);
+type NavigationFooterProps = {
+	navigationItems: Array<FooterTabProps>;
+	selectedNavIndex: number;
+	setSelectedNavIndex: Dispatch<SetStateAction<number>>;
+};
 
-	const updateNavState = () => {
-
-    };
-
+export const NavigationFooter: FunctionComponent<NavigationFooterProps> = ({
+	navigationItems,
+	selectedNavIndex,
+	setSelectedNavIndex,
+}) => {
 	return (
 		<View
 			style={{
 				flexDirection: 'row',
-				height: 80,
+				height: 70,
 				justifyContent: 'space-between',
 			}}
 		>
-			{navigationItems.map(({ isActive, icon, label, colour }, index) => (
+			{navigationItems.map(({ Icon, label }, index) => (
 				<FooterTab
 					key={index}
-					isActive={!!isActive}
-					icon={icon}
+					isActive={index === selectedNavIndex}
+					Icon={Icon}
 					label={label}
-					colour={colour}
-					onTouch={updateNavState}
+					onTouch={() => setSelectedNavIndex(index)}
 				></FooterTab>
 			))}
 		</View>
