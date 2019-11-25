@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import { ViewProps, View } from 'react-native';
 import React from 'react';
+import { colours } from '../styles/ColourPalette';
 
 export const SparkCard: FunctionComponent<ViewProps> = (props) => (
 	<View
@@ -12,6 +13,7 @@ export const SparkCard: FunctionComponent<ViewProps> = (props) => (
 				width: '100%',
 				backgroundColor: '#fff',
 				borderRadius: 10,
+				borderColor: colours.primaryText,
 				shadowColor: '#000',
 				shadowOffset: {
 					width: 0,

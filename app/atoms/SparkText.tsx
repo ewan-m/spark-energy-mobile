@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { SparkTextProps } from './interfaces/SparkTextProps';
 
 import { Dimensions, Platform, PixelRatio } from 'react-native';
+import { colours } from '../styles/ColourPalette';
 
 const scaledFontSize = (size: number) => {
 	const newSize = size * Dimensions.get('window').fontScale;
@@ -19,11 +20,12 @@ export const SparkText: FunctionComponent<SparkTextProps> = (props) => (
 		style={Object.assign(
 			{},
 			{
+				color: props?.size === 'big' ? colours.primaryText : colours.secondaryText,
 				fontFamily: `SparkOmnes-${props.semiBold ? 'SemiBold' : 'Regular'}`,
 				fontSize: {
-					small: scaledFontSize(12),
-					normal: scaledFontSize(15),
-					big: scaledFontSize(25),
+					small: scaledFontSize(15),
+					normal: scaledFontSize(18),
+					big: scaledFontSize(32),
 				}[props.size ?? 'normal'],
 			},
 			props.style
