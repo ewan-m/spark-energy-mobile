@@ -1,6 +1,6 @@
 import { environment } from './environment';
 
-export interface LoginRequest {
+interface LoginRequest {
 	strategy: 'UsernamePassword';
 	token: string;
 	keepMeLoggedIn: boolean;
