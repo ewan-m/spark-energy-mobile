@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { SafeAreaView, ImageBackground, View } from 'react-native';
 import { colours } from '../../styles/ColourPalette';
-import { SparkTextSemiBold } from '../../atoms/SparkTextBold';
 import { SparkCard } from '../../atoms/SparkCard';
 import { Login } from './Login';
+import { SparkText } from '../../atoms/SparkText';
 
 export const Welcome: FunctionComponent<any> = (props) => (
 	<SafeAreaView>
@@ -29,10 +29,10 @@ export const Welcome: FunctionComponent<any> = (props) => (
 							paddingBottom: 10,
 						}}
 					>
-						<SparkTextSemiBold size="big">Login</SparkTextSemiBold>
-						<SparkTextSemiBold style={{ color: colours.greyDark }} size="big">
+						<SparkText semiBold size="big">Login</SparkText>
+						<SparkText semiBold style={{ color: colours.greyDark }} size="big">
 							Register
-						</SparkTextSemiBold>
+						</SparkText>
 					</View>
 
 					<Login onLoginSuccess={() => props.navigation.navigate('MainContent')} />

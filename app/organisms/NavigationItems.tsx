@@ -8,32 +8,33 @@ import {
 	IconMobileApp,
 } from '../atoms/Icons';
 import { View } from "react-native";
-import { SparkTextRegular } from "../atoms/SparkTextRegular";
+import { SparkText } from "../atoms/SparkText";
+import { BillsPage } from "../pages/bills/BillsPage";
 
 export const navigationItems: Array<FooterTabProps> = [
 	{
 		label: 'Home',
 		Icon: IconHome,
-		page: <View><SparkTextRegular>Home</SparkTextRegular></View>
+		page: <View><SparkText>Home</SparkText></View>
 	},
 	{
 		label: 'Reading',
 		Icon: IconSearch,
-		page: <View><SparkTextRegular>Reading</SparkTextRegular></View>
+		page: <View><SparkText>Reading</SparkText></View>
 	},
 	{
 		label: 'Bills',
 		Icon: IconMobileApp,
-		page: <View><SparkTextRegular>Bills</SparkTextRegular></View>
+		page: <BillsPage />
 	},
 	{
 		label: 'Help',
 		Icon: IconQuestionMark,
-		page: <View><SparkTextRegular>Help</SparkTextRegular></View>
+		page: <View><SparkText>Help</SparkText></View>
 	},
 	{
 		label: 'Profile',
 		Icon: IconUser,
-		page: <View><SparkTextRegular>Profile</SparkTextRegular></View>
+		page: <View><SparkText>Profile</SparkText></View>
 	},
 ];

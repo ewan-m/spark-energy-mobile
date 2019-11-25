@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { SparkButtonProps } from './interfaces/SparkButtonProps';
 import { colours } from '../styles/ColourPalette';
-import { SparkTextSemiBold } from './SparkTextBold';
+import { SparkText } from './SparkText';
 
 export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 	<TouchableOpacity
@@ -21,8 +21,8 @@ export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 			props.style
 		)}
 	>
-		<SparkTextSemiBold size={props.size} style={{ color: '#fff' }}>
+		<SparkText semiBold size={props.size} style={{ color: '#fff' }}>
 			{props.children}
-		</SparkTextSemiBold>
+		</SparkText>
 	</TouchableOpacity>
 );

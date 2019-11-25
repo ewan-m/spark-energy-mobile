@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { View } from 'react-native';
-import { SparkTextRegular } from '../atoms/SparkTextRegular';
+import { SparkText } from '../atoms/SparkText';
 import { colours } from '../styles/ColourPalette';
 import { SparkSvgProps } from '../atoms/Icons';
 
@@ -30,11 +30,11 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 		<View style={{ width: 35, height: 35 }}>
 			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />
 		</View>
-		<SparkTextRegular
+		<SparkText
 			size="small"
 			style={{ color: isActive ? colours.magenta : colours.secondaryText }}
 		>
 			{label}
-		</SparkTextRegular>
+		</SparkText>
 	</View>
 );

@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { SparkTextRegular } from '../../atoms/SparkTextRegular';
+import { SparkText } from '../../atoms/SparkText';
 import { SparkForm } from '../../atoms/SparkForm';
 import { SparkButton } from '../../atoms/SparkButton';
 import { login } from '../../api-communication/login';
@@ -39,7 +39,7 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 
 	return (
 		<>
-			<SparkTextRegular size="normal">Email</SparkTextRegular>
+			<SparkText size="normal">Email</SparkText>
 			<SparkForm
 				autoCompleteType="email"
 				keyboardType="email-address"
@@ -48,7 +48,7 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 				onChangeText={setEmail}
 			></SparkForm>
 
-			<SparkTextRegular size="normal">Password</SparkTextRegular>
+			<SparkText size="normal">Password</SparkText>
 			<SparkForm
 				autoCapitalize="none"
 				secureTextEntry={true}
@@ -58,12 +58,12 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 			></SparkForm>
 
 			{error !== '' && (
-				<SparkTextRegular
+				<SparkText
 					size="normal"
 					style={{ color: colours.failureRed, marginBottom: 20 }}
 				>
 					{error}
-				</SparkTextRegular>
+				</SparkText>
 			)}
 
 			<SparkButton onPress={attemptLogin} size="normal">
