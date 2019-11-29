@@ -6,6 +6,7 @@ import { SparkCard } from '../../atoms/SparkCard';
 import { getBills, Bill } from '../../api-communication/bills';
 import { colours } from '../../styles/ColourPalette';
 import { IconDownload } from '../../atoms/Icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const BillsPage: FunctionComponent = () => {
 	const [bills, setBills] = useState([] as Bill[]);
@@ -20,6 +21,10 @@ export const BillsPage: FunctionComponent = () => {
 		});
 	}, []);
 
+	const download = async (uri: string) => {
+		console.log('trying to download');
+	};
+
 	return (
 		<SafeAreaView>
 			<View
@@ -31,26 +36,29 @@ export const BillsPage: FunctionComponent = () => {
 					width: '100%',
 				}}
 			>
-				<SparkText semiBold style={{ width: '100%', marginBottom: 20 }} size="big">
+				<SparkText
+					primary
+					semiBold
+					style={{ width: '100%', marginBottom: 20 }}
+					size="big"
+				>
 					Bills
 				</SparkText>
 
-				{isLoading && (
-					<SparkText >
-						Loading...
-					</SparkText>
-				)}
+				{isLoading && <SparkText>Loading...</SparkText>}
 
 				{!isLoading && (
 					<>
 						<SparkCard
 							style={{
 								marginBottom: 40,
-								borderWidth: 2,
 							}}
+							imageBackgroundUrl={require('../../../assets/images/Energy_Abstract_Turquoise.jpg')}
 						>
-							<SparkText>Current Balance</SparkText>
-							<SparkText size="big" semiBold>
+							<SparkText primary semiBold>
+								Current Balance
+							</SparkText>
+							<SparkText primary size="big" semiBold>
 								{bills.length > 0 && bills[0] && bills[0].balance.includes('-')
 									? `+${bills[0].balance}`
 									: `-${bills[0].balance}`}
@@ -64,7 +72,7 @@ export const BillsPage: FunctionComponent = () => {
 									display: 'flex',
 									flexDirection: 'row',
 									justifyContent: 'space-between',
-									alignItems: 'center',
+									alignItems: 'flex-end',
 								}}
 								key={bill.id}
 							>
@@ -72,15 +80,31 @@ export const BillsPage: FunctionComponent = () => {
 									<SparkText size="small">{bill.transactionDate}</SparkText>
 									<SparkText
 										style={{
-											color: bill.debit ? colours.failureRed : colours.successGreen,
+											color:
+												bill.credit === '0.00' ? colours.failureRed : colours.successGreen,
 										}}
 										size="big"
 									>
 										{bill.credit === '0.00' ? `-${bill.debit}` : `+${bill.credit}`}
 									</SparkText>
-									<SparkText>{bill.description}</SparkText>
+									<SparkText primary>{bill.description}</SparkText>
 								</View>
-								<IconDownload fill={colours.blueDark} width="50" height="50" />
+								<TouchableOpacity
+									onPress={() => download(bill.link)}
+									style={{
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+										justifyContent: 'space-between',
+									}}
+								>
+									<View style={{ width: 50, height: 50 }}>
+										<IconDownload fill={colours.secondaryText} />
+									</View>
+									<SparkText semiBold size="small">
+										Download
+									</SparkText>
+								</TouchableOpacity>
 							</SparkCard>
 						))}
 					</>

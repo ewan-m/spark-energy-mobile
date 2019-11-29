@@ -20,7 +20,7 @@ export const SparkText: FunctionComponent<SparkTextProps> = (props) => (
 		style={Object.assign(
 			{},
 			{
-				color: props?.size === 'big' ? colours.primaryText : colours.secondaryText,
+				color: props?.primary ? colours.primaryText : colours.secondaryText,
 				fontFamily: `SparkOmnes-${props.semiBold ? 'SemiBold' : 'Regular'}`,
 				fontSize: {
 					small: scaledFontSize(15),
