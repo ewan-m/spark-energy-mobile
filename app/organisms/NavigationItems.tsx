@@ -4,8 +4,8 @@ import {
 	IconHome,
 	IconQuestionMark,
 	IconUser,
-	IconSearch,
-	IconMobileApp,
+	IconPound,
+	IconLightning,
 } from '../atoms/Icons';
 import { View } from "react-native";
 import { SparkText } from "../atoms/SparkText";
@@ -18,13 +18,13 @@ export const navigationItems: Array<FooterTabProps> = [
 		page: <View><SparkText>Home</SparkText></View>
 	},
 	{
-		label: 'Reading',
-		Icon: IconSearch,
+		label: 'Meters',
+		Icon: IconLightning,
 		page: <View><SparkText>Reading</SparkText></View>
 	},
 	{
-		label: 'Bills',
-		Icon: IconMobileApp,
+		label: 'Payments',
+		Icon: IconPound,
 		page: <BillsPage />
 	},
 	{
