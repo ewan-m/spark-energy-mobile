@@ -5,6 +5,7 @@
 		"lib": ["es2018", "dom"],
 		"sourceMap": true,
 		"jsx": "react",
+		"downlevelIteration": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"noImplicitAny": true,
