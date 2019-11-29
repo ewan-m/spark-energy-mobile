@@ -24,13 +24,12 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-	
+
 	const attemptLogin = async () => {
 		setError('');
 		const loginResponse = await login(email, password);
 
 		if (loginResponse.success && loginResponse.data) {
-			await AsyncStorage.setItem('accessToken', loginResponse.data);
 			props.onLoginSuccess();
 		} else {
 			setError(loginResponse.msg ?? 'Oops, something went wrong.');

@@ -12,8 +12,10 @@ export const BillsPage: FunctionComponent = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		getBills().then((data) => {
-			setBills(data);
+		getBills().then((response) => {
+			if (response.data) {
+				setBills(response.data);
+			}
 			setIsLoading(false);
 		});
 	}, []);

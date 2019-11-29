@@ -2,8 +2,9 @@ import React, { FunctionComponent, useState } from 'react';
 import { StatusBar, SafeAreaView, ScrollView } from 'react-native';
 import { NavigationFooter } from '../organisms/NavigationFooter';
 import { navigationItems } from '../organisms/NavigationItems';
+import { NavigationNavigatorProps } from 'react-navigation';
 
-export const MainContent: FunctionComponent = () => {
+export const MainContent: FunctionComponent<NavigationNavigatorProps> = ({navigation}) => {
 	const [currentNavIndex, setCurrentNavIndex] = useState(0);
 
 	return (
