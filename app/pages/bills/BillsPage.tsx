@@ -1,12 +1,11 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, Linking } from 'react-native';
 import { SparkText } from '../../atoms/SparkText';
 import { SparkCard } from '../../atoms/SparkCard';
 import { getBills, Bill } from '../../api-communication/bills';
 import { colours } from '../../styles/ColourPalette';
 import { IconDownload } from '../../atoms/Icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const BillsPage: FunctionComponent = () => {
 	const [bills, setBills] = useState([] as Bill[]);
@@ -21,8 +20,11 @@ export const BillsPage: FunctionComponent = () => {
 		});
 	}, []);
 
-	const download = async (uri: string) => {
-		console.log('trying to download');
+	const openBillInBrowser = async (url: string) => {
+		const isUrlSupported = await Linking.canOpenURL(url);
+		if (isUrlSupported) {
+			Linking.openURL(url);
+		}
 	};
 
 	return (
@@ -53,7 +55,7 @@ export const BillsPage: FunctionComponent = () => {
 							style={{
 								marginBottom: 40,
 							}}
-							imageBackgroundUrl={require('../../../assets/images/Energy_Abstract_Turquoise.jpg')}
+							imageBackgroundUrl={require('../../../assets/images/Energy_Abstract_White.jpg')}
 						>
 							<SparkText primary semiBold>
 								Current Balance
@@ -89,22 +91,22 @@ export const BillsPage: FunctionComponent = () => {
 									</SparkText>
 									<SparkText primary>{bill.description}</SparkText>
 								</View>
-								<TouchableOpacity
-									onPress={() => download(bill.link)}
-									style={{
-										display: 'flex',
-										flexDirection: 'column',
-										alignItems: 'center',
-										justifyContent: 'space-between',
-									}}
-								>
-									<View style={{ width: 50, height: 50 }}>
-										<IconDownload fill={colours.secondaryText} />
+								{bill.link && (
+									<View
+										onTouchEnd={() => openBillInBrowser(bill.link)}
+										style={{
+											display: 'flex',
+											flexDirection: 'column',
+											alignItems: 'center',
+											justifyContent: 'space-between',
+										}}
+									>
+										<IconDownload width={40} height={40} fill={colours.secondaryText} />
+										<SparkText semiBold size="small">
+											Download.pdf
+										</SparkText>
 									</View>
-									<SparkText semiBold size="small">
-										Download
-									</SparkText>
-								</TouchableOpacity>
+								)}
 							</SparkCard>
 						))}
 					</>
