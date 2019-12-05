@@ -1,4 +1,29 @@
-export const colours = {
+export type SparkColour =
+	| 'blueDark'
+	| 'blue'
+	| 'blueLight'
+	| 'violetDark'
+	| 'violet'
+	| 'violetLight'
+	| 'purpleDark'
+	| 'purple'
+	| 'purpleLight'
+	| 'magenta'
+	| 'hotPink'
+	| 'orange'
+	| 'tangerine'
+	| 'yellow'
+	| 'lime'
+	| 'turquoise'
+	| 'grey'
+	| 'greyLight'
+	| 'greyDark'
+	| 'successGreen'
+	| 'failureRed'
+	| 'primaryText'
+	| 'secondaryText';
+
+export const colours: { [colour in SparkColour]: string } = {
 	blueDark: '#0a71a2',
 	blue: '#0d8dca',
 	blueLight: '#3da4df',

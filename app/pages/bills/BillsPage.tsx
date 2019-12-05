@@ -6,15 +6,28 @@ import { SparkCard } from '../../atoms/SparkCard';
 import { getBills, Bill } from '../../api-communication/bills';
 import { colours } from '../../styles/ColourPalette';
 import { IconDownload } from '../../atoms/Icons';
+import { SparkMoney } from '../../molecules/SparkMoney';
 
 export const BillsPage: FunctionComponent = () => {
 	const [bills, setBills] = useState([] as Bill[]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [currentBalance, setCurrentBalance] = useState('');
+	const [inDebt, setInDebt] = useState(false);
 
 	useEffect(() => {
 		getBills().then((response) => {
 			if (response.data) {
 				setBills(response.data);
+				if (response.data.length > 0 && response.data[0]) {
+					const balance = response.data[0].balance;
+					if (balance.includes('-')) {
+						setInDebt(false);
+						setCurrentBalance(`+${balance}`);
+					} else {
+						setInDebt(true);
+						setCurrentBalance(`-${balance}`);
+					}
+				}
 			}
 			setIsLoading(false);
 		});
@@ -60,11 +73,8 @@ export const BillsPage: FunctionComponent = () => {
 							<SparkText primary semiBold>
 								Current Balance
 							</SparkText>
-							<SparkText primary size="big" semiBold>
-								{bills.length > 0 && bills[0] && bills[0].balance.includes('-')
-									? `+${bills[0].balance}`
-									: `-${bills[0].balance}`}
-							</SparkText>
+							<SparkMoney colour="contextual" amount={currentBalance} />
+							<SparkText>{inDebt ? '#PayYourBills' : '#PaidMyBills'}</SparkText>
 						</SparkCard>
 
 						{bills.map((bill) => (
@@ -80,15 +90,10 @@ export const BillsPage: FunctionComponent = () => {
 							>
 								<View>
 									<SparkText size="small">{bill.transactionDate}</SparkText>
-									<SparkText
-										style={{
-											color:
-												bill.credit === '0.00' ? colours.failureRed : colours.successGreen,
-										}}
-										size="big"
-									>
-										{bill.credit === '0.00' ? `-${bill.debit}` : `+${bill.credit}`}
-									</SparkText>
+									<SparkMoney
+										colour="contextual"
+										amount={bill.credit === '0.00' ? `-${bill.debit}` : bill.credit}
+									/>
 									<SparkText primary>{bill.description}</SparkText>
 								</View>
 								{bill.link && (
