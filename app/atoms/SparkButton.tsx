@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { SparkButtonProps } from './interfaces/SparkButtonProps';
 import { colours } from '../styles/ColourPalette';
 import { SparkText } from './SparkText';
+
+import { TouchableOpacityProps } from "react-native";
+
+export interface SparkButtonProps extends TouchableOpacityProps {
+	size: 'big' | 'normal';
+}
 
 export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 	<TouchableOpacity

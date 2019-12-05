@@ -3,7 +3,11 @@ import { View, ImageBackground, Image } from 'react-native';
 import React from 'react';
 import { colours } from '../styles/ColourPalette';
 import { sparkShadow } from '../styles/Shadows';
-import { SparkCardProps } from './interfaces/SparkCardProps';
+import { ViewProps, ImageSourcePropType } from 'react-native';
+
+export interface SparkCardProps extends ViewProps {
+	imageBackgroundUrl?: ImageSourcePropType;
+}
 
 export const SparkCard: FunctionComponent<SparkCardProps> = (props) => (
 	<View

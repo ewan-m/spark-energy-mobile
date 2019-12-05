@@ -1,9 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import { Text } from 'react-native';
-import { SparkTextProps } from './interfaces/SparkTextProps';
 
 import { Dimensions, Platform, PixelRatio } from 'react-native';
 import { colours } from '../styles/ColourPalette';
+
+import { TextProps } from "react-native";
+
+export interface SparkTextProps extends TextProps {
+	size?: 'small' | 'normal' | 'big';
+	primary?: boolean;
+	secondary?: boolean;
+	semiBold?: boolean;
+}
 
 const scaledFontSize = (size: number) => {
 	const newSize = size * Dimensions.get('window').fontScale;
