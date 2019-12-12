@@ -10,6 +10,7 @@ import {
 import { View } from "react-native";
 import { SparkText } from "../atoms/SparkText";
 import { BillsPage } from "../pages/bills/BillsPage";
+import { MetersPage } from "../pages/meters/MetersPage";
 
 export const navigationItems: Array<FooterTabProps> = [
 	{
@@ -20,7 +21,7 @@ export const navigationItems: Array<FooterTabProps> = [
 	{
 		label: 'Meters',
 		Icon: IconLightning,
-		page: <View><SparkText>Reading</SparkText></View>
+		page: <MetersPage />
 	},
 	{
 		label: 'Payments',
