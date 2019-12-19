@@ -11,6 +11,7 @@ import { View } from "react-native";
 import { SparkText } from "../atoms/SparkText";
 import { BillsPage } from "../pages/bills/BillsPage";
 import { MetersPage } from "../pages/meters/MetersPage";
+import { ProfilePage } from "./profile/ProfilePage";
 
 export const navigationItems: Array<FooterTabProps> = [
 	{
@@ -36,6 +37,6 @@ export const navigationItems: Array<FooterTabProps> = [
 	{
 		label: 'Profile',
 		Icon: IconUser,
-		page: <View><SparkText>Profile</SparkText></View>
+		page: <ProfilePage />
 	},
 ];

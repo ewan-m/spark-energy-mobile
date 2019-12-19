@@ -1,17 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-import {
-	StatusBar,
-	SafeAreaView,
-	ScrollView,
-	ImageBackground,
-} from 'react-native';
-import { NavigationFooter } from '../organisms/NavigationFooter';
-import { navigationItems } from '../organisms/NavigationItems';
+import { StatusBar, SafeAreaView, ScrollView } from 'react-native';
+import { NavigationFooter } from './NavigationFooter';
+import { navigationItems } from './NavigationItems';
 import { NavigationNavigatorProps } from 'react-navigation';
 
-export const MainContent: FunctionComponent<NavigationNavigatorProps> = ({
-	navigation,
-}) => {
+export const MainContent: FunctionComponent<NavigationNavigatorProps> = () => {
 	const [currentNavIndex, setCurrentNavIndex] = useState(0);
 
 	return (
