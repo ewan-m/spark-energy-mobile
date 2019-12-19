@@ -7,6 +7,7 @@ import { getBills, Bill } from '../../api-communication/bills';
 import { colours } from '../../styles/ColourPalette';
 import { IconDownload } from '../../atoms/Icons';
 import { SparkMoney } from '../../molecules/SparkMoney';
+import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 
 export const BillsPage: FunctionComponent = () => {
 	const [bills, setBills] = useState([] as Bill[]);
@@ -20,13 +21,8 @@ export const BillsPage: FunctionComponent = () => {
 				setBills(response.data);
 				if (response.data.length > 0 && response.data[0]) {
 					const balance = response.data[0].balance;
-					if (balance.includes('-')) {
-						setInDebt(false);
-						setCurrentBalance(`+${balance}`);
-					} else {
-						setInDebt(true);
-						setCurrentBalance(`-${balance}`);
-					}
+					setCurrentBalance(`${-Number(balance)}`);
+					setInDebt(!balance.includes('-'));
 				}
 			}
 			setIsLoading(false);
@@ -51,14 +47,7 @@ export const BillsPage: FunctionComponent = () => {
 					width: '100%',
 				}}
 			>
-				<SparkText
-					primary
-					semiBold
-					style={{ width: '100%', marginBottom: 20 }}
-					size="big"
-				>
-					Bills
-				</SparkText>
+				<SparkPageTitle>Bills</SparkPageTitle>
 
 				{isLoading && <SparkText>Loading...</SparkText>}
 
@@ -94,7 +83,7 @@ export const BillsPage: FunctionComponent = () => {
 										colour="contextual"
 										amount={bill.credit === '0.00' ? `-${bill.debit}` : bill.credit}
 									/>
-									<SparkText primary>{bill.description}</SparkText>
+									<SparkText primary>{bill.label}</SparkText>
 								</View>
 								{bill.link && (
 									<View
