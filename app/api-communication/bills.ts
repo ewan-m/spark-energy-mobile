@@ -1,5 +1,4 @@
 import { sparkHttpClient } from './spark-http-client';
-import { environment } from './environment';
 import { Api3Response } from './api3-response.interface';
 
 export interface Bill {
@@ -14,6 +13,4 @@ export interface Bill {
 }
 
 export const getBills = async (): Promise<Api3Response<Bill[]>> =>
-	sparkHttpClient.get<Bill[]>(
-		`${environment.baseApi}/v1/customer-invoice-statement`
-	);
+	sparkHttpClient.get<Bill[]>('/v1/customer-invoice-statement');

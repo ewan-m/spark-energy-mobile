@@ -1,4 +1,3 @@
-import { environment } from './environment';
 import { Api3Response } from './api3-response.interface';
 import { sparkHttpClient } from './spark-http-client';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -19,7 +18,7 @@ export const login = async (
 	password: string
 ): Promise<LoginResponse> => {
 	const response = await sparkHttpClient.post<string, LoginResponse>(
-		`${environment.baseApi}/v2/login`,
+		'/v2/login',
 		JSON.stringify({
 			strategy: 'UsernamePassword',
 			keepMeLoggedIn: true,

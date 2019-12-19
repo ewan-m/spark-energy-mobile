@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { Api3Response } from './api3-response.interface';
+import { environment } from './environment';
 
 interface RequestInterface {
 	method: string;
@@ -76,7 +77,7 @@ export const sparkHttpClient = {
 	) {
 		return sparkHttpClient._request<Api3Response<T>>({
 			method: 'GET',
-			url: new URL(url),
+			url: `${environment.baseApi}${url}` as any as URL,
 			headers,
 			authorize: auth === 'AUTH',
 		});
@@ -90,7 +91,7 @@ export const sparkHttpClient = {
 	) {
 		return sparkHttpClient._request<T>({
 			method: 'POST',
-			url: new URL(url),
+			url: new URL(`${environment.baseApi}${url}`),
 			body,
 			headers,
 			authorize: auth === 'AUTH',
