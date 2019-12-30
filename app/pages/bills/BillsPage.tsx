@@ -1,6 +1,6 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import React from 'react';
-import { View, SafeAreaView, Linking } from 'react-native';
+import { View, SafeAreaView, Linking, ActivityIndicator } from 'react-native';
 import { SparkText } from '../../atoms/SparkText';
 import { SparkCard } from '../../atoms/SparkCard';
 import { getBills, Bill } from '../../api-communication/bills';
@@ -16,8 +16,9 @@ export const BillsPage: FunctionComponent = () => {
 	const [inDebt, setInDebt] = useState(false);
 
 	useEffect(() => {
+		let isSubscribed = true;
 		getBills().then((response) => {
-			if (response.data) {
+			if (response.data && isSubscribed) {
 				setBills(response.data);
 				if (response.data.length > 0 && response.data[0]) {
 					const balance = response.data[0].balance;
@@ -27,6 +28,9 @@ export const BillsPage: FunctionComponent = () => {
 			}
 			setIsLoading(false);
 		});
+		return () => {
+			isSubscribed = false;
+		};
 	}, []);
 
 	const openBillInBrowser = async (url: string) => {
@@ -49,7 +53,7 @@ export const BillsPage: FunctionComponent = () => {
 			>
 				<SparkPageTitle>Bills</SparkPageTitle>
 
-				{isLoading && <SparkText>Loading...</SparkText>}
+				{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
 
 				{!isLoading && (
 					<>

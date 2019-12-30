@@ -1,6 +1,6 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, ActivityIndicator } from 'react-native';
 import { SparkText } from '../../atoms/SparkText';
 import {
 	getCustomer,
@@ -13,6 +13,7 @@ import { IconSun, IconMoon } from '../../atoms/Icons';
 import { HistoricalReading } from '../../api-communication/reading-history';
 import { SparkBulletList } from '../../molecules/SparkBulletList';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
+import { colours } from '../../styles/ColourPalette';
 
 export const MetersPage: FunctionComponent = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -22,13 +23,19 @@ export const MetersPage: FunctionComponent = () => {
 	);
 
 	useEffect(() => {
+		let isSubscribed = true;
 		getCustomer().then((response) => {
-			setIsLoading(false);
+			if (isSubscribed) {
+				setIsLoading(false);
 
-			if (response.success && response.data) {
-				setMeters(response.data.meterReadingFormData);
+				if (response.success && response.data) {
+					setMeters(response.data.meterReadingFormData);
+				}
 			}
 		});
+		return () => {
+			isSubscribed = false;
+		};
 	}, []);
 	return (
 		<SafeAreaView>
@@ -43,11 +50,11 @@ export const MetersPage: FunctionComponent = () => {
 			>
 				<SparkPageTitle>Meters</SparkPageTitle>
 
-				{isLoading && <SparkText>Loading...</SparkText>}
+				{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
 				{!isLoading && (
 					<SparkCard>
 						{meters.map((meter) => (
-							<View style={{ marginBottom: 20 }}>
+							<View key={meter.meterId} style={{ marginBottom: 20 }}>
 								<View
 									style={{
 										display: 'flex',
