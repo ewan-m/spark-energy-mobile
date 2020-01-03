@@ -17,6 +17,7 @@ export const SparkBulletList: FunctionComponent<SparkBulletListProps> = ({
 			<SparkText semiBold>{title}</SparkText>
 			{content.map((item) => (
 				<View
+					key={item}
 					style={{
 						display: 'flex',
 						flexDirection: 'row',
