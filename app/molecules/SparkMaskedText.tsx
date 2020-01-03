@@ -30,7 +30,7 @@ export const SparkMaskedText: FunctionComponent<SparkMaskedTextProps> = (props) 
 			>
 				<Image
 					style={{ width: '100%', height: 100, overflow: 'hidden' }}
-					source={require('../../assets/images/abstract-dark.png')}
+					source={require('../../assets/images/Energy_Abstract_Blue.jpg')}
 				/>
 			</MaskedView>
 		</View>
