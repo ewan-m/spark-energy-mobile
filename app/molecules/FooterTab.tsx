@@ -29,7 +29,15 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 		}}
 		onTouchEnd={() => (onTouch ? onTouch(label) : console.log('no'))}
 	>
-		<SparkCard style={{ width: 35, height: 35, borderRadius: 35, padding: 0}}>
+		<SparkCard
+			style={{
+				width: 35,
+				height: 35,
+				borderRadius: 35,
+				padding: 0,
+				elevation: isActive ? 5 : 0,
+			}}
+		>
 			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />
 		</SparkCard>
 		<SparkText
