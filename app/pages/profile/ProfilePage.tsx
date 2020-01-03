@@ -1,26 +1,37 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SparkText } from '../../atoms/SparkText';
-import { SparkButton } from '../../atoms/SparkButton';
-import { IconUser, IconPhone } from '../../atoms/Icons';
+import { IconUser } from '../../atoms/Icons';
 import { SparkCard } from '../../atoms/SparkCard';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { getCustomer, Customer } from '../../api-communication/customer';
+import { colours } from '../../styles/ColourPalette';
+import { ChangeEmailAddress } from './ChangeEmailAddress';
+import { ChangePassword } from './ChangePassword';
 
 export const ProfilePage: FunctionComponent = () => {
 	const signOut = async () => {
 		await AsyncStorage.removeItem('accessToken');
 	};
 
+	const [isLoading, setIsLoading] = useState(true);
 	const [customer, setCustomer] = useState({} as Customer);
 
 	useEffect(() => {
+		let isSubscribed = true;
 		getCustomer().then((response) => {
-			if (response.success && response.data) {
-				setCustomer(response.data);
+			if (isSubscribed) {
+				setIsLoading(false);
+				if (response.success && response.data) {
+					setCustomer(response.data);
+				}
 			}
 		});
+
+		return () => {
+			isSubscribed = false;
+		};
 	}, []);
 
 	return (
@@ -35,42 +46,43 @@ export const ProfilePage: FunctionComponent = () => {
 				}}
 			>
 				<SparkPageTitle>Profile</SparkPageTitle>
-				<SparkCard>
+				<SparkCard
+					style={{ marginBottom: 20 }}
+					imageBackgroundUrl={require('../../../assets/images/abstract-white.jpg')}
+				>
 					<View
 						style={{
 							display: 'flex',
-							alignItems: 'center',
 							flexDirection: 'row',
-							justifyContent: 'space-between',
+							width: '100%',
 						}}
 					>
-						<IconUser width={75} height={75} />
-						<View style={{ width: '70%' }}>
-							<SparkText style={{ marginBottom: 5 }}>{customer?.Name}</SparkText>
-							<SparkText semiBold size="small">
-								{customer?.EmailAddress}
-							</SparkText>
+						<IconUser width={50} height={50} style={{ marginRight: 20 }} />
+
+						<View style={{flex: 1}}>
+							{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
+							{!isLoading && (
+								<>
+									<SparkText size="small">{customer?.CustomerReference}</SparkText>
+									<SparkText primary size="normal" semiBold style={{ marginBottom: 10 }}>
+										{customer?.Name}
+									</SparkText>
+									<SparkText>{customer?.AddressLine1}</SparkText>
+
+									{!!customer.AddressLine2 && (
+										<SparkText size="small">{customer?.AddressLine2}</SparkText>
+									)}
+									<SparkText size="small">
+										{customer?.TownCity}, {customer?.County}
+									</SparkText>
+									<SparkText size="small">{customer?.PostCode}</SparkText>
+								</>
+							)}
 						</View>
 					</View>
 				</SparkCard>
-				<SparkCard>
-					<View
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							flexDirection: 'row',
-							justifyContent: 'space-between',
-						}}
-					>
-						<View style={{ width: '70%' }}>
-							<SparkText style={{ marginBottom: 5 }}>{customer?.Name}</SparkText>
-							<SparkText semiBold size="small">
-								{customer?.EmailAddress}
-							</SparkText>
-						</View>
-						<IconPhone width={75} height={75} />
-					</View>
-				</SparkCard>
+				<ChangeEmailAddress isLoading={isLoading} customer={customer} />
+				<ChangePassword />
 			</View>
 		</SafeAreaView>
 	);
