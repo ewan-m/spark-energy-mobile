@@ -12,12 +12,13 @@ import { SparkText } from "../atoms/SparkText";
 import { BillsPage } from "../pages/bills/BillsPage";
 import { MetersPage } from "../pages/meters/MetersPage";
 import { ProfilePage } from "./profile/ProfilePage";
+import { HomePage } from "./home/HomePage";
 
 export const navigationItems: Array<FooterTabProps> = [
 	{
 		label: 'Home',
 		Icon: IconHome,
-		page: <View><SparkText>Home</SparkText></View>
+		page: <HomePage />
 	},
 	{
 		label: 'Meters',
@@ -28,11 +29,6 @@ export const navigationItems: Array<FooterTabProps> = [
 		label: 'Payments',
 		Icon: IconPound,
 		page: <BillsPage />
-	},
-	{
-		label: 'Help',
-		Icon: IconQuestionMark,
-		page: <View><SparkText>Help</SparkText></View>
 	},
 	{
 		label: 'Profile',
