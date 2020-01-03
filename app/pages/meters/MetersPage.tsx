@@ -52,9 +52,11 @@ export const MetersPage: FunctionComponent = () => {
 
 				{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
 				{!isLoading && (
-					<SparkCard>
+					<SparkCard
+						imageBackgroundUrl={require('../../../assets/images/abstract-white.jpg')}
+					>
 						{meters.map((meter) => (
-							<View key={meter.meterId} style={{ marginBottom: 20 }}>
+							<View key={meter.name} style={{ marginBottom: 20 }}>
 								<View
 									style={{
 										display: 'flex',
@@ -85,18 +87,11 @@ export const MetersPage: FunctionComponent = () => {
 								<SparkForm keyboardType="numeric" placeholder={meter.value} />
 							</View>
 						))}
-						<SparkButton size="normal">Submit readings</SparkButton>
+						<SparkButton size="normal">Submit Readings</SparkButton>
 					</SparkCard>
 				)}
 
-				<SparkText
-					primary
-					semiBold
-					style={{ width: '100%', marginVertical: 20 }}
-					size="big"
-				>
-					Help
-				</SparkText>
+				<SparkPageTitle style={{marginVertical: 20}}>Help</SparkPageTitle>
 				<SparkCard>
 					<SparkBulletList
 						title="General Advice"
