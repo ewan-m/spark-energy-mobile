@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from 'react';
-import { View } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import { FooterTab, FooterTabProps } from '../molecules/FooterTab';
 import { colours } from '../styles/ColourPalette';
 
@@ -15,15 +15,15 @@ export const NavigationFooter: FunctionComponent<NavigationFooterProps> = ({
 	setSelectedNavIndex,
 }) => {
 	return (
-		<View
+		<ImageBackground
 			style={{
 				flexDirection: 'row',
 				height: 65,
 				justifyContent: 'space-between',
-				borderTopWidth: 2,
-				borderTopColor: colours.grey,
-				backgroundColor: '#eee'
+				borderTopWidth: 1,
+				borderTopColor: colours.greyLight,
 			}}
+			source={require('../../assets/images/abstract-white.jpg')}
 		>
 			{navigationItems.map(({ Icon, label }, index) => (
 				<FooterTab
@@ -34,6 +34,6 @@ export const NavigationFooter: FunctionComponent<NavigationFooterProps> = ({
 					onTouch={() => setSelectedNavIndex(index)}
 				></FooterTab>
 			))}
-		</View>
+		</ImageBackground>
 	);
 };
