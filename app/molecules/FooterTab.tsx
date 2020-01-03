@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { SparkText } from '../atoms/SparkText';
 import { colours } from '../styles/ColourPalette';
 import { SparkSvgProps } from '../atoms/Icons';
+import { sparkShadow } from '../styles/Shadows';
+import { SparkCard } from '../atoms/SparkCard';
 
 export interface FooterTabProps {
 	Icon: FunctionComponent<SparkSvgProps>;
@@ -27,11 +29,12 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 		}}
 		onTouchEnd={() => (onTouch ? onTouch(label) : console.log('no'))}
 	>
-		<View style={{ width: 35, height: 35 }}>
+		<SparkCard style={{ width: 35, height: 35, borderRadius: 35, padding: 0}}>
 			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />
-		</View>
+		</SparkCard>
 		<SparkText
 			size="small"
+			semiBold={isActive}
 			style={{ color: isActive ? colours.magenta : colours.secondaryText }}
 		>
 			{label}
