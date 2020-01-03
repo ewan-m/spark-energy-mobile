@@ -7,7 +7,7 @@ import { colours } from '../styles/ColourPalette';
 import { TextProps } from 'react-native';
 
 export interface SparkTextProps extends TextProps {
-	size?: 'small' | 'normal' | 'big';
+	size?: 'small' | 'normal' | 'big' | 'huge';
 	primary?: boolean;
 	secondary?: boolean;
 	semiBold?: boolean;
@@ -36,6 +36,7 @@ export const SparkText: FunctionComponent<SparkTextProps> = (props) => (
 					small: scaledFontSize(15),
 					normal: scaledFontSize(18),
 					big: scaledFontSize(32),
+					huge: scaledFontSize(60)
 				}[props.size ?? 'normal'],
 			},
 			props.style
