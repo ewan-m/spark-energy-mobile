@@ -22,15 +22,15 @@ export const SparkMaskedText: FunctionComponent<SparkMaskedTextProps> = (props) 
                             alignItems: props.textAlign ?? "flex-start"
 						}}
 					>
-						<SparkText primary semiBold size="huge">
+						<SparkText primary size="huge">
 							{props.children}
 						</SparkText>
 					</View>
 				}
 			>
 				<Image
-					style={{ width: '100%', height: 100, overflow: 'hidden' }}
-					source={require('../../assets/images/Energy_Abstract_Blue.jpg')}
+					style={{ width: '100%', height: 80, overflow: 'hidden' }}
+					source={require('../../assets/images/bg.png')}
 				/>
 			</MaskedView>
 		</View>
