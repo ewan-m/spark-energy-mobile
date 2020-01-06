@@ -8,6 +8,7 @@ import { colours } from '../../styles/ColourPalette';
 import { IconDownload } from '../../atoms/Icons';
 import { SparkMoney } from '../../molecules/SparkMoney';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
+import { SparkPageContainer } from '../../molecules/SparkPageContainer';
 
 export const BillsPage: FunctionComponent = () => {
 	const [bills, setBills] = useState([] as Bill[]);
@@ -42,15 +43,7 @@ export const BillsPage: FunctionComponent = () => {
 
 	return (
 		<SafeAreaView>
-			<View
-				style={{
-					padding: 20,
-					alignItems: 'center',
-					justifyContent: 'space-evenly',
-					height: '100%',
-					width: '100%',
-				}}
-			>
+			<SparkPageContainer>
 				<SparkPageTitle>Bills</SparkPageTitle>
 
 				{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
@@ -101,7 +94,7 @@ export const BillsPage: FunctionComponent = () => {
 									>
 										<IconDownload width={40} height={40} fill={colours.secondaryText} />
 										<SparkText semiBold size="small">
-											Download.pdf
+											View bill
 										</SparkText>
 									</View>
 								)}
@@ -109,7 +102,7 @@ export const BillsPage: FunctionComponent = () => {
 						))}
 					</>
 				)}
-			</View>
+			</SparkPageContainer>
 		</SafeAreaView>
 	);
 };

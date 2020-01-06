@@ -14,6 +14,7 @@ import { HistoricalReading } from '../../api-communication/reading-history';
 import { SparkBulletList } from '../../molecules/SparkBulletList';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { colours } from '../../styles/ColourPalette';
+import { SparkPageContainer } from '../../molecules/SparkPageContainer';
 
 export const MetersPage: FunctionComponent = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -39,15 +40,7 @@ export const MetersPage: FunctionComponent = () => {
 	}, []);
 	return (
 		<SafeAreaView>
-			<View
-				style={{
-					padding: 20,
-					alignItems: 'center',
-					justifyContent: 'space-evenly',
-					height: '100%',
-					width: '100%',
-				}}
-			>
+			<SparkPageContainer>
 				<SparkPageTitle>Meters</SparkPageTitle>
 
 				{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
@@ -91,7 +84,7 @@ export const MetersPage: FunctionComponent = () => {
 					</SparkCard>
 				)}
 
-				<SparkPageTitle style={{marginVertical: 20}}>Help</SparkPageTitle>
+				<SparkPageTitle style={{ marginVertical: 20 }}>Help</SparkPageTitle>
 				<SparkCard>
 					<SparkBulletList
 						title="General Advice"
@@ -101,7 +94,7 @@ export const MetersPage: FunctionComponent = () => {
 						]}
 					/>
 				</SparkCard>
-			</View>
+			</SparkPageContainer>
 		</SafeAreaView>
 	);
 };
