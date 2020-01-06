@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { FormState } from '../../helpful-datatypes/form-state.enum';
+import { FormState } from '../../helpful-utilities/form-state.enum';
 import { SparkCard } from '../../atoms/SparkCard';
 import { View } from 'react-native';
 import { SparkButton } from '../../atoms/SparkButton';

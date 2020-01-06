@@ -7,7 +7,7 @@ import { SparkForm } from '../../atoms/SparkForm';
 import { SparkButton } from '../../atoms/SparkButton';
 import { Customer } from '../../api-communication/customer';
 import { colours } from '../../styles/ColourPalette';
-import { FormState } from '../../helpful-datatypes/form-state.enum';
+import { FormState } from '../../helpful-utilities/form-state.enum';
 
 interface ChangeEmailAddressProps {
 	isLoading: boolean;

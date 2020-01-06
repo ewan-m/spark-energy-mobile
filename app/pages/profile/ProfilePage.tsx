@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { getCustomer, Customer } from '../../api-communication/customer';

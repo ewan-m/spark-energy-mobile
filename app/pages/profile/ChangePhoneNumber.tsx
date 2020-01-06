@@ -4,7 +4,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { IconPhone } from '../../atoms/Icons';
 import { SparkText } from '../../atoms/SparkText';
 import { SparkButton } from '../../atoms/SparkButton';
-import { FormState } from '../../helpful-datatypes/form-state.enum';
+import { FormState } from '../../helpful-utilities/form-state.enum';
 import { colours } from '../../styles/ColourPalette';
 import { SparkForm } from '../../atoms/SparkForm';
 

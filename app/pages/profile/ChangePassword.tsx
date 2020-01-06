@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { IconLock } from '../../atoms/Icons';
 import { SparkText } from '../../atoms/SparkText';
 import { SparkButton } from '../../atoms/SparkButton';
-import { FormState } from '../../helpful-datatypes/form-state.enum';
+import { FormState } from '../../helpful-utilities/form-state.enum';
 
 export const ChangePassword: FunctionComponent = () => {
 	const [formState, setFormState] = useState(FormState.initial);
