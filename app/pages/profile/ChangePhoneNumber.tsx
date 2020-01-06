@@ -1,37 +1,35 @@
 import React, { FunctionComponent, useState } from 'react';
 import { SparkCard } from '../../atoms/SparkCard';
 import { View, ActivityIndicator } from 'react-native';
-import { IconMail } from '../../atoms/Icons';
+import { IconPhone } from '../../atoms/Icons';
 import { SparkText } from '../../atoms/SparkText';
-import { SparkForm } from '../../atoms/SparkForm';
 import { SparkButton } from '../../atoms/SparkButton';
-import { Customer } from '../../api-communication/customer';
-import { colours } from '../../styles/ColourPalette';
 import { FormState } from '../../helpful-datatypes/form-state.enum';
-
-interface ChangeEmailAddressProps {
-	isLoading: boolean;
-	customer?: Customer;
-}
+import { colours } from '../../styles/ColourPalette';
+import { SparkForm } from '../../atoms/SparkForm';
 
 const InitialForm: FunctionComponent<any> = (props) => (
 	<>
-		<SparkText size="small">Current Email</SparkText>
+		<SparkText size="small">Current Telephone Number</SparkText>
+		<SparkText style={{ marginBottom: 10 }} primary semiBold>
+			{props.customer?.PhoneNumber || '-'}
+		</SparkText>
+		<SparkText size="small">Current Mobile Number</SparkText>
 		<SparkText style={{ marginBottom: 20 }} primary semiBold>
-			{props.customer?.EmailAddress}
+			{props.customer?.MobileNumber || '-'}
 		</SparkText>
 		<SparkButton
 			size="normal"
 			onPress={() => props.setFormState(FormState.inProgress)}
 		>
-			Change Email
+			Change Phone Number
 		</SparkButton>
 	</>
 );
 
 const InProgressForm: FunctionComponent<any> = (props) => (
 	<>
-		<SparkText semiBold style={{marginBottom: 5}}>New Email</SparkText>
+		<SparkText semiBold style={{marginBottom: 5}}>New Telephone Number</SparkText>
 		<SparkForm
 			autoCompleteType="email"
 			keyboardType="email-address"
@@ -39,17 +37,10 @@ const InProgressForm: FunctionComponent<any> = (props) => (
 			style={{ marginBottom: 20 }}
 			onChangeText={() => {}}
 		></SparkForm>
-		<SparkText semiBold style={{marginBottom: 5}}>Confirm New Email</SparkText>
+		<SparkText semiBold style={{marginBottom: 5}}>New Mobile Number</SparkText>
 		<SparkForm
 			autoCompleteType="email"
 			keyboardType="email-address"
-			autoCapitalize="none"
-			style={{ marginBottom: 20 }}
-			onChangeText={() => {}}
-		></SparkForm>
-		<SparkText semiBold style={{marginBottom: 5}}>Current Password</SparkText>
-		<SparkForm
-			autoCompleteType="password"
 			autoCapitalize="none"
 			style={{ marginBottom: 20 }}
 			onChangeText={() => {}}
@@ -71,16 +62,13 @@ const InProgressForm: FunctionComponent<any> = (props) => (
 	</>
 );
 
-export const ChangeEmailAddress: FunctionComponent<ChangeEmailAddressProps> = ({
-	isLoading,
-	customer,
-}) => {
+export const ChangePhoneNumber: FunctionComponent<any> = ({customer, isLoading}) => {
 	const [formState, setFormState] = useState(FormState.initial);
 
 	return (
-		<SparkCard style={{ marginBottom: 20 }}>
+<SparkCard style={{ marginBottom: 20 }}>
 			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
-				Email Address
+				Phone Number
 			</SparkText>
 
 			<View
@@ -90,7 +78,7 @@ export const ChangeEmailAddress: FunctionComponent<ChangeEmailAddressProps> = ({
 					width: '100%',
 				}}
 			>
-				<IconMail width={50} height={50} style={{ marginRight: 20 }} />
+				<IconPhone width={50} height={50} style={{ marginRight: 20 }} />
 				<View style={{ flex: 1 }}>
 					{isLoading && (
 						<ActivityIndicator

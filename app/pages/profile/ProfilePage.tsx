@@ -1,14 +1,16 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { View, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { SparkText } from '../../atoms/SparkText';
-import { IconUser } from '../../atoms/Icons';
-import { SparkCard } from '../../atoms/SparkCard';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { getCustomer, Customer } from '../../api-communication/customer';
-import { colours } from '../../styles/ColourPalette';
 import { ChangeEmailAddress } from './ChangeEmailAddress';
 import { ChangePassword } from './ChangePassword';
+import { ProfileInfo } from './ProfileInfo';
+import { Vulnerabilities } from './Vulnerabilities';
+import { ContactPreferences } from './ContactPreferences';
+import { ChangePhoneNumber } from './ChangePhoneNumber';
+import { SparkPageContainer } from '../../molecules/SparkPageContainer';
+import { AdditionalPeople } from './AdditionalPeople';
 
 export const ProfilePage: FunctionComponent = () => {
 	const signOut = async () => {
@@ -36,54 +38,16 @@ export const ProfilePage: FunctionComponent = () => {
 
 	return (
 		<SafeAreaView>
-			<View
-				style={{
-					padding: 20,
-					alignItems: 'center',
-					justifyContent: 'space-evenly',
-					height: '100%',
-					width: '100%',
-				}}
-			>
+			<SparkPageContainer>
 				<SparkPageTitle>Profile</SparkPageTitle>
-				<SparkCard
-					style={{ marginBottom: 20 }}
-					imageBackgroundUrl={require('../../../assets/images/abstract-white.jpg')}
-				>
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							width: '100%',
-						}}
-					>
-						<IconUser width={50} height={50} style={{ marginRight: 20 }} />
-
-						<View style={{flex: 1}}>
-							{isLoading && <ActivityIndicator size="large" color={colours.magenta} />}
-							{!isLoading && (
-								<>
-									<SparkText size="small">{customer?.CustomerReference}</SparkText>
-									<SparkText primary size="normal" semiBold style={{ marginBottom: 10 }}>
-										{customer?.Name}
-									</SparkText>
-									<SparkText>{customer?.AddressLine1}</SparkText>
-
-									{!!customer.AddressLine2 && (
-										<SparkText size="small">{customer?.AddressLine2}</SparkText>
-									)}
-									<SparkText size="small">
-										{customer?.TownCity}, {customer?.County}
-									</SparkText>
-									<SparkText size="small">{customer?.PostCode}</SparkText>
-								</>
-							)}
-						</View>
-					</View>
-				</SparkCard>
+				<ProfileInfo isLoading={isLoading} customer={customer} />
 				<ChangeEmailAddress isLoading={isLoading} customer={customer} />
 				<ChangePassword />
-			</View>
+				<ChangePhoneNumber isLoading={isLoading} customer={customer} />
+				<Vulnerabilities />
+				<ContactPreferences />
+				<AdditionalPeople />
+			</SparkPageContainer>
 		</SafeAreaView>
 	);
 };
