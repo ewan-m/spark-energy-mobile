@@ -4,14 +4,14 @@ import { SparkCard } from '../../atoms/SparkCard';
 import { View } from 'react-native';
 import { SparkButton } from '../../atoms/SparkButton';
 import { SparkText } from '../../atoms/SparkText';
-import { IconAccessibility, IconQuestionMark } from '../../atoms/Icons';
+import { IconQuestionMark } from '../../atoms/Icons';
 
 export const Vulnerabilities: FunctionComponent = () => {
 	const [formState, setFormState] = useState(FormState.initial);
 
 	return (
 		<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Vulnerabilities
 			</SparkText>
 			<View

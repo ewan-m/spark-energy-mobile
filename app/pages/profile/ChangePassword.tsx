@@ -11,7 +11,7 @@ export const ChangePassword: FunctionComponent = () => {
 
 	return (
 		<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Password
 			</SparkText>
 			<View

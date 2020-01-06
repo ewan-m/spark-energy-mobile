@@ -11,7 +11,7 @@ export const ContactPreferences: FunctionComponent = () => {
 
 	return (
 		<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Contact Preferences
 			</SparkText>
 			<View

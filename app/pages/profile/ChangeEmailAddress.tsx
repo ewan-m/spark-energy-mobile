@@ -79,7 +79,7 @@ export const ChangeEmailAddress: FunctionComponent<ChangeEmailAddressProps> = ({
 
 	return (
 		<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Email Address
 			</SparkText>
 

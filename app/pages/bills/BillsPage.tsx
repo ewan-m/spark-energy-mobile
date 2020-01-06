@@ -56,7 +56,7 @@ export const BillsPage: FunctionComponent = () => {
 							}}
 							imageBackgroundUrl={require('../../../assets/images/abstract-white.jpg')}
 						>
-							<SparkText primary semiBold>
+							<SparkText primary size="big">
 								Current Balance
 							</SparkText>
 							<SparkMoney colour="contextual" amount={currentBalance} />

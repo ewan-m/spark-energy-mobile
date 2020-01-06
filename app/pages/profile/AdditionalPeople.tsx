@@ -1,18 +1,17 @@
-import React, { FunctionComponent, useState } from "react";
-import { SparkText } from "../../atoms/SparkText";
-import { View } from "react-native";
-import { SparkCard } from "../../atoms/SparkCard";
-import { SparkButton } from "../../atoms/SparkButton";
-import { IconUser } from "../../atoms/Icons";
-import { FormState } from "../../helpful-datatypes/form-state.enum";
-
+import React, { FunctionComponent, useState } from 'react';
+import { SparkText } from '../../atoms/SparkText';
+import { View } from 'react-native';
+import { SparkCard } from '../../atoms/SparkCard';
+import { SparkButton } from '../../atoms/SparkButton';
+import { IconUser } from '../../atoms/Icons';
+import { FormState } from '../../helpful-datatypes/form-state.enum';
 
 export const AdditionalPeople: FunctionComponent = () => {
-    const [formState, setFormState] = useState(FormState.initial);
-    
-    return (
+	const [formState, setFormState] = useState(FormState.initial);
+
+	return (
 		<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Additional People
 			</SparkText>
 			<View
@@ -34,4 +33,4 @@ export const AdditionalPeople: FunctionComponent = () => {
 			</View>
 		</SparkCard>
 	);
-}
+};

@@ -6,6 +6,7 @@ import { SparkForm } from '../../atoms/SparkForm';
 import { SparkButton } from '../../atoms/SparkButton';
 import { login } from '../../api-communication/login';
 import { colours } from '../../styles/ColourPalette';
+import { SparkCard } from '../../atoms/SparkCard';
 
 type LoginProps = {
 	onLoginSuccess: Function;
@@ -37,8 +38,8 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 	};
 
 	return (
-		<>
-			<SparkText size="normal">Email</SparkText>
+		<SparkCard style={{marginBottom: 20}}>
+			<SparkText semiBold style={{marginBottom: 5}}>Email</SparkText>
 			<SparkForm
 				autoCompleteType="email"
 				keyboardType="email-address"
@@ -47,7 +48,7 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 				onChangeText={setEmail}
 			></SparkForm>
 
-			<SparkText size="normal">Password</SparkText>
+			<SparkText semiBold style={{marginBottom: 5}}>Password</SparkText>
 			<SparkForm
 				autoCapitalize="none"
 				secureTextEntry={true}
@@ -58,7 +59,6 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 
 			{error !== '' && (
 				<SparkText
-					size="normal"
 					style={{ color: colours.failureRed, marginBottom: 20 }}
 				>
 					{error}
@@ -68,6 +68,6 @@ export const Login: FunctionComponent<LoginProps> = (props) => {
 			<SparkButton onPress={attemptLogin} size="normal">
 				Login
 			</SparkButton>
-		</>
+		</SparkCard>
 	);
 };

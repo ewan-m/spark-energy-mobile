@@ -29,7 +29,9 @@ const InitialForm: FunctionComponent<any> = (props) => (
 
 const InProgressForm: FunctionComponent<any> = (props) => (
 	<>
-		<SparkText semiBold style={{marginBottom: 5}}>New Telephone Number</SparkText>
+		<SparkText semiBold style={{ marginBottom: 5 }}>
+			New Telephone Number
+		</SparkText>
 		<SparkForm
 			autoCompleteType="email"
 			keyboardType="email-address"
@@ -37,7 +39,9 @@ const InProgressForm: FunctionComponent<any> = (props) => (
 			style={{ marginBottom: 20 }}
 			onChangeText={() => {}}
 		></SparkForm>
-		<SparkText semiBold style={{marginBottom: 5}}>New Mobile Number</SparkText>
+		<SparkText semiBold style={{ marginBottom: 5 }}>
+			New Mobile Number
+		</SparkText>
 		<SparkForm
 			autoCompleteType="email"
 			keyboardType="email-address"
@@ -49,10 +53,14 @@ const InProgressForm: FunctionComponent<any> = (props) => (
 			style={{
 				display: 'flex',
 				flexDirection: 'row',
-				justifyContent: 'space-between'
+				justifyContent: 'space-between',
 			}}
 		>
-			<SparkButton type="secondary" onPress={() => props.setFormState(FormState.initial)} size="normal">
+			<SparkButton
+				type="secondary"
+				onPress={() => props.setFormState(FormState.initial)}
+				size="normal"
+			>
 				Cancel
 			</SparkButton>
 			<SparkButton onPress={() => {}} size="normal">
@@ -62,12 +70,15 @@ const InProgressForm: FunctionComponent<any> = (props) => (
 	</>
 );
 
-export const ChangePhoneNumber: FunctionComponent<any> = ({customer, isLoading}) => {
+export const ChangePhoneNumber: FunctionComponent<any> = ({
+	customer,
+	isLoading,
+}) => {
 	const [formState, setFormState] = useState(FormState.initial);
 
 	return (
-<SparkCard style={{ marginBottom: 20 }}>
-			<SparkText size="big" primary semiBold style={{ marginBottom: 20 }}>
+		<SparkCard style={{ marginBottom: 20 }}>
+			<SparkText size="big" primary style={{ marginBottom: 20 }}>
 				Phone Number
 			</SparkText>
 
@@ -91,7 +102,9 @@ export const ChangePhoneNumber: FunctionComponent<any> = ({customer, isLoading})
 							{formState === FormState.initial && (
 								<InitialForm customer={customer} setFormState={setFormState} />
 							)}
-							{formState === FormState.inProgress && <InProgressForm setFormState={setFormState} />}
+							{formState === FormState.inProgress && (
+								<InProgressForm setFormState={setFormState} />
+							)}
 						</>
 					)}
 				</View>
