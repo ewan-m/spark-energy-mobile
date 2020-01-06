@@ -1,23 +1,39 @@
 import React, { FunctionComponent } from 'react';
-import { View } from 'react-native';
 import { SparkText } from '../../atoms/SparkText';
 import { SafeAreaView } from 'react-navigation';
-import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { SparkMaskedText } from '../../molecules/SparkMaskedText';
 import { SparkCard } from '../../atoms/SparkCard';
+import { SparkPageContainer } from '../../molecules/SparkPageContainer';
+import { View, ImageBackground } from 'react-native';
+import { sparkShadow } from '../../styles/Shadows';
+import { colours } from '../../styles/ColourPalette';
+
+const SparkImagePanel: FunctionComponent<any> = ({panelImage}) => (
+	<View
+		style={{
+			width: '100%',
+			height: 150,
+			marginBottom: 20,
+			borderRadius: 10,
+			borderColor: colours.primaryText,
+			...(sparkShadow(3) as any),
+			overflow: 'hidden',
+		}}
+	>
+		<ImageBackground
+			style={{
+				width: '100%',
+				height: 150,
+			}}
+			source={panelImage}
+		/>
+	</View>
+);
 
 export const HomePage: FunctionComponent = () => {
 	return (
 		<SafeAreaView>
-			<View
-				style={{
-					padding: 20,
-					alignItems: 'center',
-					justifyContent: 'space-evenly',
-					height: '100%',
-					width: '100%',
-				}}
-			>
+			<SparkPageContainer>
 				<SparkCard style={{ marginBottom: 20 }}>
 					<SparkMaskedText textAlign="flex-start">Meters</SparkMaskedText>
 					<SparkText>
@@ -25,12 +41,15 @@ export const HomePage: FunctionComponent = () => {
 						your previous reads to get an idea of how much energy you use.
 					</SparkText>
 				</SparkCard>
+				<SparkImagePanel panelImage={require("../../../assets/images/Couple_breakfast_iPad.png")} />
 				<SparkCard style={{ marginBottom: 20 }}>
 					<SparkMaskedText textAlign="flex-end">Payments</SparkMaskedText>
 					<SparkText>
 						Take a look at your payment history and check your balance.
 					</SparkText>
 				</SparkCard>
+				
+				<SparkImagePanel panelImage={require("../../../assets/images/mother-child.png")} />
 				<SparkCard style={{ marginBottom: 20 }}>
 					<SparkMaskedText textAlign="flex-start">Profile</SparkMaskedText>
 					<SparkText>
@@ -38,7 +57,7 @@ export const HomePage: FunctionComponent = () => {
 						everything is up to date.
 					</SparkText>
 				</SparkCard>
-			</View>
+			</SparkPageContainer>
 		</SafeAreaView>
 	);
 };
