@@ -1,34 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { SparkText } from '../../atoms/SparkText';
 import { SafeAreaView } from 'react-navigation';
+import { SparkText } from '../../atoms/SparkText';
 import { SparkMaskedText } from '../../molecules/SparkMaskedText';
 import { SparkCard } from '../../atoms/SparkCard';
 import { SparkPageContainer } from '../../molecules/SparkPageContainer';
-import { View, ImageBackground } from 'react-native';
-import { sparkShadow } from '../../styles/Shadows';
-import { colours } from '../../styles/ColourPalette';
+import { SparkImagePanel } from '../../molecules/SparkImagePanel';
 
-const SparkImagePanel: FunctionComponent<any> = ({panelImage}) => (
-	<View
-		style={{
-			width: '100%',
-			height: 150,
-			marginBottom: 20,
-			borderRadius: 10,
-			borderColor: colours.primaryText,
-			...(sparkShadow(3) as any),
-			overflow: 'hidden',
-		}}
-	>
-		<ImageBackground
-			style={{
-				width: '100%',
-				height: 150,
-			}}
-			source={panelImage}
-		/>
-	</View>
-);
 
 export const HomePage: FunctionComponent = () => {
 	return (
