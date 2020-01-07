@@ -20,7 +20,7 @@ export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 				backgroundColor:
 					props.type === 'secondary' ? colours.greyLight : colours.magenta,
 				fill: props.type === 'secondary' ? colours.magenta : '#fff',
-				borderRadius: 10,
+				borderRadius: 5,
 				borderWidth: 1,
 				alignItems: 'center',
 				borderColor: colours.primaryText,

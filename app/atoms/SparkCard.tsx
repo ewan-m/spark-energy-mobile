@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { View, ImageBackground, Image } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import React from 'react';
 import { colours } from '../styles/ColourPalette';
 import { sparkShadow } from '../styles/Shadows';
@@ -17,9 +17,9 @@ export const SparkCard: FunctionComponent<SparkCardProps> = (props) => (
 			width: '100%',
 			backgroundColor: '#fff',
 			borderWidth: props.imageBackgroundUrl ? 1 : 0,
-			borderRadius: props.imageBackgroundUrl ? 0 : 10,
+			borderRadius: props.imageBackgroundUrl ? 0 : 5,
 			borderColor: colours.primaryText,
-			...(sparkShadow(props.imageBackgroundUrl ? 10 : 5) as any),
+			...(sparkShadow(props.imageBackgroundUrl ? 3 : 2) as any),
 			...(props.style as any),
 		}}
 	>

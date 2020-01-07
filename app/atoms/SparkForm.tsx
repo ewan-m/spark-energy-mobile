@@ -12,7 +12,7 @@ export const SparkForm: FunctionComponent<TextInputProps> = (props) => (
 				fontFamily: 'SparkOmnes-Regular',
 				fontSize: scaledFontSize(18),
 				borderWidth: 1,
-				borderRadius: 10,
+				borderRadius: 5,
 				padding: 15,
 				borderColor: colours.secondaryText,
 				color: colours.secondaryText,
