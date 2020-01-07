@@ -14,7 +14,7 @@ export interface SparkTextProps extends TextProps {
 	textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
 }
 
-const scaledFontSize = (size: number) => {
+export const scaledFontSize = (size: number) => {
 	const newSize = size * Dimensions.get('window').fontScale;
 	if (Platform.OS === 'ios') {
 		return Math.round(PixelRatio.roundToNearestPixel(newSize));

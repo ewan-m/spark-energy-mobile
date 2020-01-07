@@ -16,16 +16,14 @@ export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 		style={Object.assign(
 			{},
 			{
-				fontFamily: 'SparkOmnes-Regular',
-				fontSize: { big: 20, normal: 40 }[props.size],
 				padding: 15,
 				backgroundColor:
 					props.type === 'secondary' ? colours.greyLight : colours.magenta,
 				fill: props.type === 'secondary' ? colours.magenta : '#fff',
-				alignItems: 'center',
-				borderRadius: 35,
+				borderRadius: 10,
 				borderWidth: 1,
-				borderColor: colours.secondaryText
+				alignItems: 'center',
+				borderColor: colours.primaryText,
 			},
 			props.style
 		)}
