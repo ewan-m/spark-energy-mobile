@@ -15,7 +15,7 @@ export const SparkForm: FunctionComponent<TextInputProps> = (props) => (
 				borderRadius: 5,
 				padding: 15,
 				borderColor: colours.secondaryText,
-				color: colours.secondaryText,
+				color: colours.primaryText,
 				backgroundColor: '#fff',
 			},
 			props.style
