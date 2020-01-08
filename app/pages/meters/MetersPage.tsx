@@ -10,18 +10,15 @@ import { SparkForm } from '../../atoms/SparkForm';
 import { SparkCard } from '../../atoms/SparkCard';
 import { SparkButton } from '../../atoms/SparkButton';
 import { IconSun, IconMoon } from '../../atoms/Icons';
-import { HistoricalReading } from '../../api-communication/reading-history';
 import { SparkBulletList } from '../../molecules/SparkBulletList';
 import { SparkPageTitle } from '../../molecules/SparkPageTitle';
 import { colours } from '../../styles/ColourPalette';
 import { SparkPageContainer } from '../../molecules/SparkPageContainer';
+import { UsageHistory } from './UsageHistory';
 
 export const MetersPage: FunctionComponent = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [meters, setMeters] = useState([] as Array<MeterReadingFormData>);
-	const [historicalReads, setHistoricalReads] = useState(
-		[] as Array<HistoricalReading>
-	);
 
 	useEffect(() => {
 		let isSubscribed = true;
@@ -85,7 +82,7 @@ export const MetersPage: FunctionComponent = () => {
 				)}
 
 				<SparkPageTitle style={{ marginVertical: 20 }}>Help</SparkPageTitle>
-				<SparkCard>
+				<SparkCard style={{ marginBottom: 20 }}>
 					<SparkBulletList
 						title="General Advice"
 						content={[
@@ -94,6 +91,8 @@ export const MetersPage: FunctionComponent = () => {
 						]}
 					/>
 				</SparkCard>
+				<SparkPageTitle style={{ marginVertical: 20 }}>Usage</SparkPageTitle>
+				<UsageHistory meters={meters} />
 			</SparkPageContainer>
 		</SafeAreaView>
 	);
