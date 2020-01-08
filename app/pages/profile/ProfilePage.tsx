@@ -11,6 +11,7 @@ import { ContactPreferences } from './ContactPreferences';
 import { ChangePhoneNumber } from './ChangePhoneNumber';
 import { SparkPageContainer } from '../../molecules/SparkPageContainer';
 import { AdditionalPeople } from './AdditionalPeople';
+import { Logout } from './Logout';
 
 export const ProfilePage: FunctionComponent = () => {
 	const signOut = async () => {
@@ -47,6 +48,7 @@ export const ProfilePage: FunctionComponent = () => {
 				<Vulnerabilities />
 				<ContactPreferences />
 				<AdditionalPeople />
+				<Logout />
 			</SparkPageContainer>
 		</SafeAreaView>
 	);
