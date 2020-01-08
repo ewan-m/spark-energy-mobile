@@ -10,6 +10,8 @@
         "lint": "eslint . --fix"
     },
     "dependencies": {
+        "moment": "^2.24.0",
+        "@react-native-community/masked-view": "^0.1.5",
         "react": "^16.12.0",
         "react-native": "^0.61.5",
         "react-native-gesture-handler": "^1.5.3",
