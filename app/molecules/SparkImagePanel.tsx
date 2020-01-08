@@ -9,7 +9,7 @@ export const SparkImagePanel: FunctionComponent<any> = ({panelImage}) => (
 			width: '100%',
 			height: 150,
 			marginBottom: 20,
-			borderRadius: 10,
+			borderRadius: 5,
 			borderColor: colours.primaryText,
 			...(sparkShadow(3) as any),
 			overflow: 'hidden',
