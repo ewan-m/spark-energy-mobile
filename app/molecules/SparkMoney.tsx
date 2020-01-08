@@ -28,18 +28,21 @@ export const SparkMoney: FunctionComponent<SparkMoneyProps> = ({
 	const littleMoney = amount.split('.')[1];
 
 	return (
-		<View style={{display: 'flex', flexDirection: 'row', alignItems: 'baseline'}}>
+		<View
+			style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}
+		>
 			<SparkText
 				style={{
 					color: calculatedColour,
 				}}
 				size="big"
 			>
-				{bigMoney}
+				{bigMoney[0]} £{bigMoney.slice(1)}
 			</SparkText>
 			<SparkText
 				style={{
-					paddingBottom: 3,
+					paddingLeft: 1,
+					paddingBottom: 3.5,
 					color: calculatedColour,
 				}}
 				size="normal"
