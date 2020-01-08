@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { SparkText, SparkTextProps } from '../atoms/SparkText';
-import { SparkMaskedText } from './SparkMaskedText';
 import { View } from 'react-native';
+import { colours } from '../styles/ColourPalette';
 
 export interface SparkPageTitleProps extends SparkTextProps {
 	children: string;
@@ -9,9 +9,11 @@ export interface SparkPageTitleProps extends SparkTextProps {
 
 export const SparkPageTitle: FunctionComponent<SparkPageTitleProps> = ({
 	children,
-	style
+	style,
 }) => (
-	<View style={{ marginBottom: 20 }} {...style}>
-		<SparkMaskedText>{children}</SparkMaskedText>
+	<View style={Object.assign({}, { width: '100%', marginBottom: 20 }, style)}>
+		<SparkText size="huge" style={{ color: colours.primaryText }}>
+			{children}
+		</SparkText>
 	</View>
 );
