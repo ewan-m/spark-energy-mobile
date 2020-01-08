@@ -1,16 +1,12 @@
-import { FunctionComponent, useState } from 'react';
-import React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import { SparkText } from '../../atoms/SparkText';
 import { SparkForm } from '../../atoms/SparkForm';
 import { SparkButton } from '../../atoms/SparkButton';
 import { login } from '../../api-communication/login';
 import { colours } from '../../styles/ColourPalette';
-import { SparkCard } from '../../atoms/SparkCard';
-
-type LoginProps = {
-	onLoginSuccess: Function;
-};
+import { ActivityIndicator, View } from 'react-native';
 
 const skipLoginIfToken = async (onLoginSuccess: Function) => {
 	const token = await AsyncStorage.getItem('accessToken');
@@ -20,54 +16,81 @@ const skipLoginIfToken = async (onLoginSuccess: Function) => {
 	}
 };
 
-export const Login: FunctionComponent<LoginProps> = (props) => {
-	skipLoginIfToken(props.onLoginSuccess);
+const unwrappedLogin: FunctionComponent<NavigationInjectedProps> = (props) => {
+	const onLoginSuccess = () => props.navigation?.navigate('MainContent');
+	skipLoginIfToken(onLoginSuccess);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
+	const [focusPasswordInput, setFocusPasswordInput] = useState(false);
 
 	const attemptLogin = async () => {
 		setError('');
-		const loginResponse = await login(email, password);
-
-		if (loginResponse.success && loginResponse.data) {
-			props.onLoginSuccess();
-		} else {
-			setError(loginResponse.msg ?? 'Oops, something went wrong.');
-		}
+		setIsLoading(true);
+		login(email, password)
+			.then((response) => {
+				setIsLoading(false);
+				if (response.success && response.data) {
+					onLoginSuccess();
+				} else {
+					setError(response.msg ?? 'Oops, something went wrong.');
+				}
+			})
+			.catch((response) => {
+				setIsLoading(false);
+				setError(response.msg ?? 'Oops, something went wrong.');
+			});
 	};
 
 	return (
-		<SparkCard style={{marginBottom: 20}}>
-			<SparkText semiBold style={{marginBottom: 5}}>Email</SparkText>
+		<>
+			<SparkText semiBold style={{ marginBottom: 5 }}>
+				Email
+			</SparkText>
 			<SparkForm
 				autoCompleteType="email"
 				keyboardType="email-address"
 				autoCapitalize="none"
 				style={{ marginBottom: 20 }}
 				onChangeText={setEmail}
+				returnKeyType="next"
 			></SparkForm>
 
-			<SparkText semiBold style={{marginBottom: 5}}>Password</SparkText>
+			<SparkText semiBold style={{ marginBottom: 5 }}>
+				Password
+			</SparkText>
 			<SparkForm
 				autoCapitalize="none"
 				secureTextEntry={true}
 				autoCompleteType="password"
-				style={{ marginBottom: 20 }}
-				onChangeText={setPassword}
+				onChangeText={(text) => {
+					setPassword(text);
+				}}
+				onSubmitEditing={attemptLogin}
 			></SparkForm>
 
 			{error !== '' && (
 				<SparkText
-					style={{ color: colours.failureRed, marginBottom: 20 }}
+					style={{ color: colours.failureRed, marginBottom: 20, marginTop: 5 }}
 				>
 					{error}
 				</SparkText>
 			)}
-
-			<SparkButton onPress={attemptLogin} size="normal">
-				Login
-			</SparkButton>
-		</SparkCard>
+			<View style={{ marginTop: 25 }}>
+				{isLoading ? (
+					<ActivityIndicator
+						size="large"
+						color={colours.magenta}
+					></ActivityIndicator>
+				) : (
+					<SparkButton onPress={attemptLogin} size="normal">
+						Login
+					</SparkButton>
+				)}
+			</View>
+		</>
 	);
 };
+
+export const Login = withNavigation(unwrappedLogin);
