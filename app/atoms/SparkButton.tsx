@@ -13,6 +13,7 @@ export interface SparkButtonProps extends TouchableOpacityProps {
 export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
 	<TouchableOpacity
 		{...props}
+		activeOpacity={0.75}
 		style={Object.assign(
 			{},
 			{
