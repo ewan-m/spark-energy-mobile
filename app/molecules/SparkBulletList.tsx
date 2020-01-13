@@ -14,7 +14,7 @@ export const SparkBulletList: FunctionComponent<SparkBulletListProps> = ({
 }) => {
 	return (
 		<>
-			<SparkText semiBold>{title}</SparkText>
+			<SparkText size="big" primary style={{marginBottom: 10}}>{title}</SparkText>
 			{content.map((item) => (
 				<View
 					key={item}
