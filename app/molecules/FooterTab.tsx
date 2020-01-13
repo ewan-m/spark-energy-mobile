@@ -31,11 +31,11 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 	>
 		<SparkCard
 			style={{
-				width: 35,
-				height: 35,
+				width: 30,
+				height: 30,
 				borderRadius: 35,
 				padding: 0,
-				elevation: isActive ? 5 : 0,
+				elevation: 0
 			}}
 		>
 			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />

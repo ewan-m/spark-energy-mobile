@@ -15,15 +15,15 @@ export const NavigationFooter: FunctionComponent<NavigationFooterProps> = ({
 	setSelectedNavIndex,
 }) => {
 	return (
-		<ImageBackground
+		<View
 			style={{
 				flexDirection: 'row',
-				height: 65,
+				height: 60,
 				justifyContent: 'space-between',
 				borderTopWidth: 1,
 				borderTopColor: colours.greyLight,
+				backgroundColor: '#fff'
 			}}
-			source={require('../../assets/images/abstract-white.jpg')}
 		>
 			{navigationItems.map(({ Icon, label }, index) => (
 				<FooterTab
@@ -34,6 +34,6 @@ export const NavigationFooter: FunctionComponent<NavigationFooterProps> = ({
 					onTouch={() => setSelectedNavIndex(index)}
 				></FooterTab>
 			))}
-		</ImageBackground>
+		</View>
 	);
 };
