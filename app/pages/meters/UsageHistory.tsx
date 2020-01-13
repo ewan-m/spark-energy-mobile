@@ -10,11 +10,13 @@ import { colours } from '../../styles/ColourPalette';
 import { SparkCard } from '../../atoms/SparkCard';
 import { SparkText, scaledFontSize } from '../../atoms/SparkText';
 import { MeterReadingFormData } from '../../api-communication/customer';
+import { IconSun, IconMoon } from '../../atoms/Icons';
 
 type UsefulHistory = {
 	month: string;
 	meterTitle: string;
 	averageUnits: number;
+	totalUnits: number;
 	isEstimate: boolean;
 };
 
@@ -42,30 +44,28 @@ export const UsageHistory: FunctionComponent<UsageHistoryProps> = ({
 						response.data,
 						(item: HistoricalReading) => item.MeterReference + item.RegisterId
 					).map((readsGroupedByMeter) =>
-						readsGroupedByMeter
-							.map((read, index) => {
-								const nextReading =
-									readsGroupedByMeter[
-										Math.min(index + 1, readsGroupedByMeter.length - 1)
-									];
-								const averageUsageSinceLastRead =
-									(Number(read.Units) - Number(nextReading.Units)) /
-									moment(read.ReadingDate, 'DD/MM/YYYY').diff(
-										moment(nextReading.ReadingDate, 'DD/MM/YYYY'),
-										'days'
-									);
+						readsGroupedByMeter.map((read, index) => {
+							const nextReading =
+								readsGroupedByMeter[
+									Math.min(index + 1, readsGroupedByMeter.length - 1)
+								];
 
-								return {
-									month: moment(read.ReadingDate, 'DD/MM/YYYY').format('MMMM'),
-									averageUnits: averageUsageSinceLastRead,
-									meterTitle: `${read.MeterReference} ${read.RegisterId}`,
-									isEstimate: read.Source === 'E',
-								};
-							})
-							.filter(
-								(item, pos, self) =>
-									self.map((item) => item.month).indexOf(item.month) === pos
-							)
+							const totalUsed = Number(read.Units) - Number(nextReading.Units);
+							const averageUsageSinceLastRead =
+								totalUsed /
+								moment(read.ReadingDate, 'DD/MM/YYYY').diff(
+									moment(nextReading.ReadingDate, 'DD/MM/YYYY'),
+									'days'
+								);
+
+							return {
+								month: moment(read.ReadingDate, 'DD/MM/YYYY').format('MMM Do'),
+								averageUnits: averageUsageSinceLastRead,
+								totalUnits: totalUsed,
+								meterTitle: `${read.MeterReference} ${read.RegisterId}`,
+								isEstimate: read.Source === 'E',
+							};
+						})
 					);
 
 					setReads(processed);
@@ -84,16 +84,48 @@ export const UsageHistory: FunctionComponent<UsageHistoryProps> = ({
 		);
 
 		if (matchingMeter?.e7) {
-			return `${matchingMeter?.supply} (${matchingMeter?.e7})`;
+			return (
+				<View
+					style={{ flexDirection: 'row', alignItems: 'center', paddingBottom: 10 }}
+				>
+					{matchingMeter.e7 === 'Day' ? (
+						<IconSun
+							fill={colours.primaryText}
+							height={scaledFontSize(28)}
+							width={scaledFontSize(28)}
+						/>
+					) : (
+						<IconMoon
+							fill={colours.primaryText}
+							height={scaledFontSize(28)}
+							width={scaledFontSize(28)}
+						/>
+					)}
+					<SparkText size="big" primary>
+						{matchingMeter?.supply}
+					</SparkText>
+				</View>
+			);
 		}
 
-		return matchingMeter?.supply;
+		return (
+			<SparkText size="big" primary style={{ paddingBottom: 10 }}>
+				{matchingMeter?.supply}
+			</SparkText>
+		);
 	};
 
 	return isLoading ? (
 		<ActivityIndicator size="large" color={colours.magenta} />
 	) : (
 		<>
+			<SparkCard style={{ marginBottom: 20 }}>
+				<SparkText>
+					Your average usage is the average units used per day since your last read.
+					Grey bars are estimated reads and are needed when you haven't submitted a
+					reading recently.
+				</SparkText>
+			</SparkCard>
 			{reads.map((array) => (
 				<SparkCard style={{ marginBottom: 20 }}>
 					{meters.length === 0 ? (
@@ -102,29 +134,28 @@ export const UsageHistory: FunctionComponent<UsageHistoryProps> = ({
 							color={colours.primaryText}
 						></ActivityIndicator>
 					) : (
-						<SparkText size="big" style={{ marginBottom: 10 }}>
-							{getSectionTitle(array)}
-						</SparkText>
+						getSectionTitle(array)
 					)}
 					{array.pop() &&
 						array.map((item) => (
 							<>
-								<SparkText>
-									{item.month} - {item.averageUnits.toFixed(2)}
-								</SparkText>
-								<View
-									style={{
-										width:
-											(Dimensions.get('window').width - 80) *
-												(Number(item.averageUnits) /
-													Math.max(...array.map((b) => Number(b.averageUnits || 1)))) || 1,
-										height: scaledFontSize(18),
-										borderRadius: 10,
-										marginTop: 5,
-										marginBottom: 5,
-										backgroundColor: item.isEstimate ? colours.grey : colours.violetDark,
-									}}
-								></View>
+								<View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+									<SparkText style={{ width: 70 }}>{item.month} </SparkText>
+									<View
+										style={{
+											width:
+												(Dimensions.get('window').width - 200) *
+													(Number(item.averageUnits) /
+														Math.max(...array.map((b) => Number(b.averageUnits || 1)))) || 1,
+											height: scaledFontSize(18),
+											borderRadius: 10,
+											backgroundColor: item.isEstimate ? colours.grey : colours.violetDark,
+										}}
+									></View>
+									<SparkText size="small" style={{ marginLeft: 10 }}>
+										{item.averageUnits.toFixed(1)} kWh
+									</SparkText>
+								</View>
 							</>
 						))}
 				</SparkCard>
