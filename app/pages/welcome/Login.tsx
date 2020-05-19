@@ -23,7 +23,6 @@ const unwrappedLogin: FunctionComponent<NavigationInjectedProps> = (props) => {
 	const [password, setPassword] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
-	const [focusPasswordInput, setFocusPasswordInput] = useState(false);
 
 	const attemptLogin = async () => {
 		setError('');

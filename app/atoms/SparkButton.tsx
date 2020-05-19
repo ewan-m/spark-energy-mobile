@@ -1,40 +1,53 @@
 import React, { FunctionComponent } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, StyleProp, ViewStyle } from 'react-native';
 import { colours } from '../styles/ColourPalette';
 import { SparkText } from './SparkText';
-
-import { TouchableOpacityProps } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface SparkButtonProps extends TouchableOpacityProps {
-	size: 'big' | 'normal';
+	size?: 'big' | 'normal' |'huge';
 	type?: 'primary' | 'secondary';
+	innerStyle?: StyleProp<ViewStyle>;
 }
 
-export const SparkButton: FunctionComponent<SparkButtonProps> = (props) => (
+export const SparkButton: FunctionComponent<SparkButtonProps> = ({
+	size,
+	type,
+	innerStyle,
+	...props
+}) => (
 	<TouchableOpacity
 		{...props}
 		activeOpacity={0.75}
 		style={Object.assign(
 			{},
 			{
-				padding: 15,
-				backgroundColor:
-					props.type === 'secondary' ? colours.greyLight : colours.magenta,
-				fill: props.type === 'secondary' ? colours.magenta : '#fff',
-				borderRadius: 5,
-				borderWidth: 1,
 				alignItems: 'center',
-				borderColor: colours.primaryText,
+				borderRadius: 20,
 			},
 			props.style
 		)}
 	>
-		<SparkText
-			semiBold
-			size={props.size}
-			style={{ color: props.type === 'secondary' ? colours.magenta : '#fff' }}
+		<LinearGradient
+			colors={type==="secondary" ? [colours.greyLight, colours.greyMidDark]: [colours.magenta, colours.magentaDark]}
+			style={Object.assign(
+				{},
+				{
+					paddingVertical: 20,
+					paddingHorizontal: 30,
+					borderRadius: 40,
+					width: '100%',
+				},
+				innerStyle
+			)}
 		>
-			{props.children}
-		</SparkText>
+			<SparkText
+				semiBold
+				size={size}
+				style={{ color: type === 'secondary' ? colours.magenta : '#fff', textAlign: 'center' }}
+			>
+				{props.children}
+			</SparkText>
+		</LinearGradient>
 	</TouchableOpacity>
 );

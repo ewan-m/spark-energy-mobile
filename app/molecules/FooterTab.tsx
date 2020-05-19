@@ -5,6 +5,7 @@ import { colours } from '../styles/ColourPalette';
 import { SparkSvgProps } from '../atoms/Icons';
 import { sparkShadow } from '../styles/Shadows';
 import { SparkCard } from '../atoms/SparkCard';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface FooterTabProps {
 	Icon: FunctionComponent<SparkSvgProps>;
@@ -29,7 +30,7 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 		}}
 		onTouchEnd={() => (onTouch ? onTouch(label) : console.log('no'))}
 	>
-		<SparkCard
+		<View
 			style={{
 				width: 30,
 				height: 30,
@@ -37,9 +38,11 @@ export const FooterTab: FunctionComponent<FooterTabProps> = ({
 				padding: 0,
 				elevation: 0
 			}}
+			colors={[colours.grey, colours.greyLight]}
+
 		>
 			<Icon fill={isActive ? colours.magenta : colours.secondaryText} />
-		</SparkCard>
+		</View>
 		<SparkText
 			size="small"
 			semiBold={isActive}

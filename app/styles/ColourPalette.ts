@@ -9,6 +9,8 @@ export type SparkColour =
 	| 'purple'
 	| 'purpleLight'
 	| 'magenta'
+	| 'magentaDark'
+	| 'magentaLight'
 	| 'hotPink'
 	| 'orange'
 	| 'tangerine'
@@ -17,6 +19,7 @@ export type SparkColour =
 	| 'turquoise'
 	| 'grey'
 	| 'greyLight'
+	| 'greyMidDark'
 	| 'greyDark'
 	| 'successGreen'
 	| 'failureRed'
@@ -34,6 +37,8 @@ export const colours: { [colour in SparkColour]: string } = {
 	purple: '#982682',
 	purpleLight: '#ad519b',
 	magenta: '#df2080',
+	magentaDark: '#c50063',
+	magentaLight: '#ff52a9',
 	hotPink: '#e64172',
 	orange: '#ea6660',
 	tangerine: '#ef9222',
@@ -42,6 +47,7 @@ export const colours: { [colour in SparkColour]: string } = {
 	turquoise: '#00a78e',
 	grey: '#e9e8e8',
 	greyLight: '#f4f4f4',
+	greyMidDark: '#eeeeee',
 	greyDark: '#646568',
 	successGreen: '#3bab28',
 	failureRed: '#e91c1c',
